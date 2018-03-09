@@ -118,7 +118,7 @@ If for some reason you need to package your dev dependencies with your productio
 ```json
 {
   "spec": {
-    "prune": false  
+    "prune": false
   }
 }
 ```
@@ -161,6 +161,8 @@ Alongside this, the `main` attribute is also included in the `files` listing, al
   ]
 }
 ```
+
+If you have only a `main` directive, speculate will assume you are using it for its original purpose and not create an archive only including that one file.
 
 ### Node versions
 

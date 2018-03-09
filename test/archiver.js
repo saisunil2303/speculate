@@ -137,17 +137,13 @@ describe('archiver', function () {
     writeStream.emit('close');
   });
 
-  it('includes only the "main" if no "files" specified', function (done) {
+  it('archives everything if only the "main" is specified', function (done) {
     var main = 'server.js';
     archiver.compress('/tmp/SOURCES', 'tmp.tar.gz', { main: main }, function (err) {
       assert.ifError(err);
       sandbox.assert.neverCalledWith(tar.pack, sinon.match({ ignore: sinon.match.func }));
       sandbox.assert.calledWith(tar.pack, '/tmp/SOURCES', sinon.match({
-        entries: [
-          'package.json',
-          'node_modules',
-          'server.js'
-        ]
+        entries: undefined
       }));
       done();
     });
