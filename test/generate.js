@@ -60,7 +60,9 @@ describe('generate', () => {
       archiver.compress,
       '/path/to/project',
       '/path/to/project/SOURCES/my-cool-api.tar.gz',
-      {}
+      {
+        main: 'index.js'
+      }
     );
   });
 
@@ -105,7 +107,9 @@ describe('generate', () => {
       archiver.compress,
       '/path/to/project',
       '/path/to/project/SOURCES/penguin.tar.gz',
-      {}
+      {
+        main: 'index.js'
+      }
     );
   });
 
