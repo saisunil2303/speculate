@@ -289,6 +289,29 @@ If you need to set specific [systemd service options](https://www.freedesktop.or
 }
 ```
 
+#### Unit Options
+
+You can set specific [systemd unit options](https://www.freedesktop.org/software/systemd/man/systemd.unit.html) - in the `[Unit]` section of the .service file, you can specify these using the spec.unitOptions property:
+
+```json
+{
+  "spec": {
+    "unitOptions": {
+      "After": "my-cooler-api.service",
+      "Before": "my-coolest-api.service",
+      "Requires": "my-very-cool-api.service",
+    }
+  }
+}
+```
+
+If you do not require any specific unit options Speculate will use default options:
+```
+[Unit]
+Description=My Cool API
+After=network.target nss-lookup.target
+```
+
 ### Release Number
 
 By default speculate will set the RPM release number to 1, if you want to override this you can do so by using the `--release` flag:
