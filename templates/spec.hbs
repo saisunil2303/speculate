@@ -12,11 +12,11 @@ Group: Installation Script
 License: {{license}}
 Source: %{name}.tar.gz
 BuildRoot: %{buildroot}
-Requires: nodejs{{#nodeVersion}} {{{nodeVersion}}}{{/nodeVersion}}
+Requires: nodejs{{#if nodeVersion}} {{{nodeVersion}}}{{/if}}
 {{#requires}}
 Requires: {{{.}}}
 {{/requires}}
-BuildRequires: nodejs{{#nodeVersion}} {{{nodeVersion}}}{{/nodeVersion}}
+BuildRequires: nodejs{{#if nodeVersion}} {{{nodeVersion}}}{{/if}}
 {{#buildRequires}}
 BuildRequires: {{{.}}}
 {{/buildRequires}}
@@ -60,6 +60,6 @@ rm -rf %{buildroot}
 /var/log/{{name}}
 {{#hasExecutableFiles}}
 {{#executableFiles}}
-%attr(755, {{username}}, {{username}}) {{.}}
+%attr(755, {{../username}}, {{../username}}) {{.}}
 {{/executableFiles}}
 {{/hasExecutableFiles}}
