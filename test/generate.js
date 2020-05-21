@@ -130,11 +130,29 @@ describe('generate', () => {
           'routes',
           'index.js'
         ],
-        service: 'my-cool-api.service'
+        service: 'penguin.service'
       }
     );
   });
-
+  
+  it('passes files and main values from the package.json to archiver using custom name', async () => {
+    await generate('/path/to/project', pkgWithWhitelist, null, 'penguin');
+    sandbox.assert.calledWith(
+      archiver.compress,
+      '/path/to/project',
+      '/path/to/project/SOURCES/penguin.tar.gz',
+      {
+        main: 'server.js',
+        files: [
+          'lib',
+          'routes',
+          'index.js'
+        ],
+        service: 'penguin.service'
+      }
+    );
+  });
+  
   it('creates the service file with a custom name if specified', async () => {
     await generate('/path/to/project', pkg, 1, 'penguin');
     sandbox.assert.calledWith(
